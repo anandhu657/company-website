@@ -29,9 +29,9 @@ h6,
     } */
 }
 @media (max-width: 600px) {
-    /* .img-fluid{
-        height: 40vh;
-    } */
+    .img-fluid{
+        height: 50vh;
+    }
 }
 
 .spinner {
