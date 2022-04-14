@@ -12,7 +12,7 @@
     spinner();
 
 
-// Sticky navbar
+    // Sticky navbar
     $(window).scroll(function () {
         if ($(this).scrollTop() > 45) {
             $('.navbar').addClass('sticky-top shadow-sm');
@@ -28,23 +28,23 @@
     const $dropdownToggle = $(".dropdown-toggle");
     const $dropdownMenu = $(".dropdown-menu");
     const showClass = "show";
-    
-    $(window).on("load resize", function() {
+
+    $(window).on("load resize", function () {
         if (this.matchMedia("(min-width: 992px)").matches) {
             $dropdown.hover(
-            function() {
-                console.log("hai");
-                const $this = $(this);
-                $this.addClass(showClass);
-                $this.find($dropdownToggle).attr("aria-expanded", "true");
-                $this.find($dropdownMenu).addClass(showClass);
-            },
-            function() {
-                const $this = $(this);
-                $this.removeClass(showClass);
-                $this.find($dropdownToggle).attr("aria-expanded", "false");
-                $this.find($dropdownMenu).removeClass(showClass);
-            }
+                function () {
+                    console.log("hai");
+                    const $this = $(this);
+                    $this.addClass(showClass);
+                    $this.find($dropdownToggle).attr("aria-expanded", "true");
+                    $this.find($dropdownMenu).addClass(showClass);
+                },
+                function () {
+                    const $this = $(this);
+                    $this.removeClass(showClass);
+                    $this.find($dropdownToggle).attr("aria-expanded", "false");
+                    $this.find($dropdownMenu).removeClass(showClass);
+                }
             );
         } else {
             $dropdown.off("mouseenter mouseleave");
@@ -59,14 +59,36 @@ window.addEventListener("scroll", () => {
     skillsEffect();
 });
 
-function checkScroll(el){
+function checkScroll(el) {
     let rect = el.getBoundingClientRect();
     console.log(rect.top + el.offsetHeight);
-    if(window.innerHeight >= rect.top + el.offsetHeight) return true;
+    if (window.innerHeight >= rect.top + el.offsetHeight) return true;
     return false;
 }
 
-function skillsEffect(){
-    if(!checkScroll(skills_wrap)) return;
+function skillsEffect() {
+    if (!checkScroll(skills_wrap)) return;
     skills_bars.forEach((skill) => (skill.style.width = skill.dataset.progress));
+}
+
+
+
+// Slide work
+
+
+var myIndex = 1;
+carousel();
+
+function carousel() {
+    var i;
+    var x = document.getElementsByClassName("slides");
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none";
+    }
+    myIndex++;
+    if (myIndex > x.length) {
+        myIndex = 1;
+    }
+    x[myIndex - 1].style.display = "block";
+    setTimeout(carousel, 3000);
 }
